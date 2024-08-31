@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Session</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Gym Website</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#classes">Classes</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="ml-auto d-flex">
+                <span class="navbar-text mr-2" id="welcomeMessage"></span>
+                <a class="nav-link" id="loginNav" href="login.html">Login</a>
+                <a class="nav-link" id="logoutNav" href="#" style="display: none;" onclick="handleLogout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+   
+    <div class="container mt-4">
+        <h2>Book a Session</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="course">Course</label>
+                <select class="form-control" id="course" required>
+                    <option value="">Select a course</option>
+                    <option value="Yoga">Yoga</option>
+                    <option value="Spinning">Spinning</option>
+                    <option value="HIIT">HIIT</option>
+                    <option value="Pilates">Pilates</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Time</label>
+                <input type="time" class="form-control" id="time" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+        <p id="confirmationMessage" class="mt-4"></p>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        const courseDays = {
+            Yoga: ['Mon', 'Wed', 'Fri'],
+            Spinning: ['Tue', 'Thu'],
+            HIIT: ['Mon', 'Wed'],
+            Pilates: ['Sat']
+        };
+
+        function getDayOfWeek(date) {
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            return days[new Date(date).getDay()];
+        }
+
+        function isValidDate(date, course) {
+            const dayOfWeek = getDayOfWeek(date);
+            const validDays = courseDays[course] || [];
+            return validDays.includes(dayOfWeek);
+        }
+
+        function updateAvailableDates(course) {
+            const today = new Date();
+            const dateInput = document.getElementById('date');
+            let minDate = today.toISOString().split('T')[0];
+            dateInput.setAttribute('min', minDate);
+
+            dateInput.addEventListener('input', function() {
+                const selectedDate = this.value;
+                if (course && !isValidDate(selectedDate, course)) {
+                    alert(`Invalid date for the selected course. Please select a valid date.`);
+                    this.value = '';
+                }
+            });
+        }
+
+        document.getElementById('course').addEventListener('change', function() {
+            const course = this.value;
+            if (course) {
+                updateAvailableDates(course);
+            }
+        });
+
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const course = document.getElementById('course').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            if (course && date && time) {
+                if (isValidDate(date, course)) {
+                    document.getElementById('confirmationMessage').textContent = `Booking confirmed for ${course} on ${date} at ${time}.`;
+                } else {
+                    document.getElementById('confirmationMessage').textContent = `The selected date is not valid for the course ${course}.`;
+                }
+            } else {
+                document.getElementById('confirmationMessage').textContent = 'Please fill out all fields.';
+            }
+        });
+    </script>
+</body>
+</html> 
+
+
+

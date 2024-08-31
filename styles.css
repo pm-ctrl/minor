@@ -1,0 +1,86 @@
+/* General Styles */
+body {
+    padding-top: 56px; /* Adjust based on navbar height */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+/* Navbar Styles */
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+}
+
+.nav-link {
+    font-size: 1.125rem;
+}
+
+/* Welcome Message */
+#welcomeMessage {
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+/* Logout Button Styles */
+#logoutButton {
+    cursor: pointer;
+    color: #f8f9fa;
+    font-size: 1rem;
+}
+
+#logoutButton:hover {
+    color: #e9ecef;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-text {
+        margin-top: 10px;
+        display: block;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+/* Smooth scrolling for navigation links */
+html {
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 60px 0;
+}

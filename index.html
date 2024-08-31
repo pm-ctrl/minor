@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Vortex Gym Website</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+            <div class="ml-auto d-flex">
+                <span class="navbar-text mr-2" id="welcomeMessage"></span>
+                <a class="nav-link" id="loginNav" href="login.html">Login</a>
+                <a class="nav-link" id="logoutNav" href="#" style="display: none;" onclick="handleLogout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>Welcome to Our Gym!</h1>
+        <p>Get fit, stay healthy, and reach your goals with us.</p>
+        <img src="https://media.istockphoto.com/id/1430631522/photo/gym-without-people-with-large-group-of-exercise-machines.jpg?s=612x612&w=0&k=20&c=wgZ4nsI3wkEB1ejwNNmQpTL0uukn6W7dUrrRsMvdc4g=" alt="Gym" class="img-fluid">
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="container mt-4">
+        <h2>About Us</h2>
+        <p>At Vortex gym , we believe that fitness is not just a destination—it's a journey. Established with a passion for promoting health and well-being, our gym is more than just a place to work out; it's a community where you can find motivation, support, and inspiration to reach your fitness goals.
+
+            Our mission is to empower individuals of all fitness levels to lead healthier, more active lives. Whether you're a seasoned athlete or just starting your fitness journey, we provide the resources, training, and guidance you need to succeed. Our state-of-the-art facilities, combined with a wide variety of classes and expert trainers, offer something for everyone.
+            
+            At Vortex gym, we focus on a holistic approach to fitness. From strength training and cardio to mindfulness and flexibility, our programs are designed to enhance your physical and mental well-being. We take pride in creating a welcoming and inclusive environment where everyone can thrive.
+            
+            Join us today and take the first step toward becoming the best version of yourself. Together, we'll push limits, break barriers, and achieve greatness.
+            
+            Welcome to the Vortex gym family—where your fitness journey begins.</p>
+    </section>
+
+  <!-- Classes Section -->
+  <section id="classes" class="container mt-4">
+    <h2>Our Classes</h2>
+    <p>We offer a wide range of classes to suit all fitness levels. Join us today!</p>
+    
+    <ul class="list-group">
+        <li class="list-group-item">Yoga - Mon, Wed, Fri at 6 PM</li>
+        <li class="list-group-item">Spinning - Tue, Thu at 7 AM</li>
+        <li class="list-group-item">HIIT - Mon, Wed at 7 PM</li>
+        <li class="list-group-item">Pilates - Sat at 10 AM</li>
+    </ul>
+
+    <!-- Single "Book Now" Button -->
+    <button class="btn btn-primary mt-3" onclick="handleBooking()">Book Now</button>
+</section>
+
+
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mt-4">
+        <h2>Contact Us</h2>
+        <p>Have questions? Get in touch with us and we'll be happy to help.</p>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </section>
+
+    <script src="scripts.js"></script>
+</body>
+<script>
+    function handleBooking(courseName) {
+        if (sessionStorage.getItem("loggedIn") === "true") {
+            window.location.href = `booking.html?course=${courseName}`;
+        } else {
+            alert("Please log in to book a session.");
+            window.location.href = "login.html";
+        }
+    }
+</script>
+</html>
